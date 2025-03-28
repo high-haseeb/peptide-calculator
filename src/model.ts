@@ -3,14 +3,15 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DEG2RAD } from "three/src/math/MathUtils.js";
 
 export class ThreeScene {
-    private scene: THREE.Scene;
-    private camera: THREE.PerspectiveCamera;
-    private renderer: THREE.WebGLRenderer;
-    private container: HTMLCanvasElement;
+
+    private scene!: THREE.Scene;
+    private camera!: THREE.PerspectiveCamera;
+    private renderer!: THREE.WebGLRenderer;
+    private container!: HTMLCanvasElement;
     private model?: THREE.Object3D;
     private plunger?: THREE.Mesh;
     private clock = new THREE.Clock();
-    private amplitude: number = 0.0;
+    public amplitude: number = 0.0;
 
     constructor(containerId: string, modelPath: string) {
         const container = document.getElementById(containerId) as HTMLCanvasElement;

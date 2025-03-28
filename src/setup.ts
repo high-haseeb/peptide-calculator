@@ -89,8 +89,13 @@ function CalculateResult() {
 
     syringe.setAmplitude(volumeInIU);
 
+    // @ts-ignore
     document.getElementById("concentration").textContent = `${concentration} mg/mL`;
+
+    // @ts-ignore
     document.getElementById("volumeToDraw").textContent = `${volumeToDraw} units`;
+
+    // @ts-ignore
     document.getElementById("volumeInIU").textContent = `${volumeInIU} units`;
 }
 
