@@ -1,9 +1,26 @@
+/* Base Styles */
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    width: 64rem;
+    max-width: 100%; 
+    min-height: 100vh;
+    place-content: center;
+    padding: 0 0rem;
+}
+
+
+/* Other Styles */
 .roboto {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 :root {
@@ -27,30 +44,7 @@
     --muted-foreground: oklch(0.556 0 0);
 }
 
-body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    width: 64rem; /* 4xl */
-    min-height: 100vh;
-    place-content: center;
-}
-
-#app {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    /* background-color: #181818; */
-    /* color: #f5f5f5; */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: start;
-}
-
+/* Layout Classes */
 .flex {
     position: relative;
     display: flex;
@@ -66,9 +60,11 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
     gap: 8px;
 }
 
+/* Buttons */
 button {
     padding: 10px 16px;
     border: 1px solid #d1d5db;
@@ -93,6 +89,7 @@ button.selected {
     color: white;
 }
 
+/* Inputs */
 input {
     width: 100%;
     padding: 10px 14px;
@@ -106,10 +103,11 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #6b7280; /* Darker Gray on Focus */
+    border-color: #6b7280;
     box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.2);
 }
 
+/* Cards */
 .card {
     background-color: #fff;
     border: 1px solid #e5e7eb;
@@ -117,6 +115,7 @@ input:focus {
     padding: 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     width: 33%;
+    max-width: 100%;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
     display: flex;
     flex-direction: column;
@@ -127,10 +126,11 @@ input:focus {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* Headers */
 .header {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #111827; /* Dark gray */
+    color: #111827;
     margin-bottom: 2px;
     margin-top: 4px;
 }
@@ -138,12 +138,13 @@ input:focus {
 .card p {
     text-align: left;
     font-size: 14px;
-    color: #6b7280; /* Muted gray */
+    color: #6b7280;
     margin-bottom: 12px;
     margin-top: 0px;
 }
 
 .title {
+    font-weight: bold;
     font-size: 3.2em;
     line-height: 1.1;
     margin-bottom: 0;
@@ -155,19 +156,23 @@ input:focus {
     margin-bottom: 2rem;
 }
 
+/* Misc */
 strong {
     font-size: 1rem;
     margin: 0;
 }
+
 span {
     width: 100%;
     font-size: 1rem;
     text-align: center;
 }
+
 img {
     object-fit: contain;
 }
 
+/* Special Elements */
 #plunger {
     position: absolute;
     height: 8rem;
@@ -188,10 +193,70 @@ img {
 #result .header {
     margin-bottom: 1rem;
 }
+
 #result p {
     font-size: 16px;
     padding: 2px 4px;
     border-radius: 4px;
     background-color: var(--muted);
     color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    #app {
+        max-width: 100%;
+    }
+
+    .flex, .flex-col {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    .flex-col {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 80%;
+        min-width: 80%;
+        max-width: 100%;
+    }
+
+    .title {
+        padding-left: 1rem;
+        padding-top: 1rem;
+        font-size: 2rem;
+    }
+
+    .desc {
+        padding-left: 1rem;
+        max-width: 90%;
+        font-size: 0.8rem;
+    }
+
+    .flex-col {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    #plunger {
+        height: 2.5rem;
+        bottom: 0.5rem;
+        left: 5.0rem;
+    }
 }
