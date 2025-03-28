@@ -1,5 +1,13 @@
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
@@ -14,7 +22,7 @@
 
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
-    --primary: yellow;
+    --primary: #0E1B4D;
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
 }
@@ -24,70 +32,72 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 56rem; /* 4xl */
-    min-width: max-content;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    width: 64rem; /* 4xl */
     min-height: 100vh;
     place-content: center;
 }
 
 #app {
-    width: 56rem; /* 4xl */
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     /* background-color: #181818; */
     /* color: #f5f5f5; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1rem;
     align-items: start;
 }
 
 .flex {
+    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 
 .flex-col {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     gap: 8px;
 }
 
 button {
     padding: 10px 16px;
-    border: 1px solid #d1d5db; /* Light Gray Border */
-    border-radius: 8px;
-    background-color: #fff; /* White Background */
-    color: #374151; /* Dark Gray Text */
+    border: 1px solid #d1d5db;
+    border-radius: 16px;
+    background-color: #fff; 
+    color: #374151; 
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 button:hover {
-    background-color: #f3f4f6; /* Light Hover */
+    background-color: #f3f4f6;
 }
 
 button:active {
-    background-color: #e5e7eb; /* Slightly Darker Active */
+    background-color: #e5e7eb;
 }
 
 button.selected {
-    background-color: #111827; /* Dark Gray */
-    color: #fff; /* White Text */
-    border-color: #111827;
+    background-color: #d5453c;
+    color: white;
 }
 
-/* ShadCN Style Input */
 input {
     width: 100%;
     padding: 10px 14px;
     border: 1px solid #d1d5db;
-    border-radius: 8px;
+    border-radius: 18px;
     font-size: 16px;
     color: #374151;
     background-color: #fff;
@@ -103,11 +113,14 @@ input:focus {
 .card {
     background-color: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border-radius: 2rem;
     padding: 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    max-width: 450px;
+    width: 33%;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card:hover {
@@ -116,7 +129,6 @@ input:focus {
 
 .header {
     font-size: 1.5rem;
-    text-align: left;
     font-weight: 600;
     color: #111827; /* Dark gray */
     margin-bottom: 2px;
@@ -143,15 +155,6 @@ input:focus {
     margin-bottom: 2rem;
 }
 
-canvas {
-    background-color: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    max-width: 450px;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
 strong {
     font-size: 1rem;
     margin: 0;
@@ -161,11 +164,25 @@ span {
     font-size: 1rem;
     text-align: center;
 }
+img {
+    object-fit: contain;
+}
+
+#plunger {
+    position: absolute;
+    height: 8rem;
+    background-color: #ff0000aa;
+    z-index: -10;
+    bottom: 1.9rem;
+    left: 9.2rem;
+}
 
 #result {
     padding: 20px;
     border-radius: 12px;
     text-align: center;
+    min-width: 300px;
+    height: max-content;
 }
 
 #result .header {

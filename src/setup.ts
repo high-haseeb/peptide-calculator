@@ -1,5 +1,3 @@
-import { ThreeScene } from "./model";
-
 const DefaultDoseValues = [0.1, 0.25, 0.5, 1, 2.5, 5, 7.5, 10, 12.5, 15]; // in mg
 const DefaultStrengthValues = [1, 5, 10, 15, 20, 30, 50];                 // in mg
 const DefaultWaterAmounts = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];               // in mL
@@ -7,8 +5,6 @@ const DefaultWaterAmounts = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];               // in 
 let doseValue = DefaultDoseValues[0];
 let peptideStrength = DefaultStrengthValues[0];
 let waterAmount = DefaultWaterAmounts[0];
-
-const syringe = new ThreeScene("game", "/syringe.glb");
 
 CalculateResult();
 
@@ -87,15 +83,16 @@ function CalculateResult() {
     const volumeToDraw = doseValue / concentration;
     const volumeInIU = volumeToDraw * 100;
 
-    syringe.setAmplitude(volumeInIU);
+    // @ts-ignore
+    document.getElementById("plunger").style.width = `${volumeInIU/2}rem`;
 
     // @ts-ignore
-    document.getElementById("concentration").textContent = `${concentration} mg/mL`;
+    document.getElementById("concentration").textContent = `${concentration.toFixed(2)} mg/mL`;
 
     // @ts-ignore
-    document.getElementById("volumeToDraw").textContent = `${volumeToDraw} units`;
+    document.getElementById("volumeToDraw").textContent = `${volumeToDraw.toFixed(2)} units`;
 
     // @ts-ignore
-    document.getElementById("volumeInIU").textContent = `${volumeInIU} units`;
+    document.getElementById("volumeInIU").textContent = `${volumeInIU.toFixed(2)} units`;
 }
 
