@@ -5,6 +5,25 @@ const DefaultWaterAmounts = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];               // in 
 let doseValue = DefaultDoseValues[0];
 let peptideStrength = DefaultStrengthValues[0];
 let waterAmount = DefaultWaterAmounts[0];
+let error: string = "";
+
+const setError = (errorMessage: string) => {
+    const errorContainer = document.getElementById("error");
+    if (!errorContainer) {
+        throw new Error("Can not find erorr message container");
+    }
+    errorContainer.style.display = "block";
+    errorContainer.innerText = errorMessage;
+}
+
+const clearError = () => {
+    const errorContainer = document.getElementById("error");
+    if (!errorContainer) {
+        throw new Error("Can not find erorr message container");
+    }
+    errorContainer.style.display = "none";
+    errorContainer.innerText = "";
+}
 
 CalculateResult();
 
@@ -74,17 +93,31 @@ export function WaterInputSetup(container: HTMLDivElement) {
     setupInput(container, DefaultWaterAmounts, (value) => waterAmount = value, waterAmount);
 }
 
-function CalculateResult() {
+export function CalculateResult() {
     const resultContainer = document.getElementById("result");
-
-    if (!resultContainer) return;
+    const plungerEl = document.getElementById("plunger");
+    if (!plungerEl) throw new Error("Can not find element with id `plunger`");
+    if (!resultContainer) throw new Error("Can not find element with id `result");
 
     const concentration = peptideStrength / waterAmount;
     const volumeToDraw = doseValue / concentration;
     const volumeInIU = volumeToDraw * 100;
 
-    // @ts-ignore
-    document.getElementById("plunger").style.width = `${volumeInIU/2}rem`;
+    let totalWidth = 64 * 16 - (270);
+    if (window.innerWidth < 786) {
+        // on mobile devices the injection image width is 80% the screen size minus the paddings
+        totalWidth = window.innerWidth * 0.7;
+    }
+
+    const totalMarks = 100;
+    const widthPerMark = totalWidth / totalMarks;
+    const plungerWidth = widthPerMark * volumeInIU;
+    if (plungerWidth > totalWidth) {
+        setError("Please lower the amount of water!");
+    } else {
+        clearError();
+        plungerEl.style.width = `${plungerWidth}px`;
+    }
 
     // @ts-ignore
     document.getElementById("concentration").textContent = `${concentration.toFixed(2)} mg/mL`;
