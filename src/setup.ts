@@ -5,7 +5,6 @@ const DefaultWaterAmounts = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];               // in 
 let doseValue = DefaultDoseValues[0];
 let peptideStrength = DefaultStrengthValues[0];
 let waterAmount = DefaultWaterAmounts[0];
-let error: string = "";
 
 const setError = (errorMessage: string) => {
     const errorContainer = document.getElementById("error");
