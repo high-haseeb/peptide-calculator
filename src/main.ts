@@ -1,15 +1,16 @@
-import './style.css'
+import './style.css';
 import { CalculateResult, DoseInputSetup, StrengthInputSetup, WaterInputSetup } from './setup';
 
 const doseAmountContainer = document.getElementById("doseAmount-container");
 const peptideStrengthContainer = document.getElementById("peptideStrength-container");
 const waterAmountContainer = document.getElementById("waterAmount-container");
 
-// @ts-ignore
+if (!doseAmountContainer || !peptideStrengthContainer || !waterAmountContainer) {
+    throw new Error("Can not find container elements to setup the inputs");
+}
+
 DoseInputSetup(doseAmountContainer);
-// @ts-ignore
 StrengthInputSetup(peptideStrengthContainer);
-// @ts-ignore
 WaterInputSetup(waterAmountContainer);
 
 const calculateEl = document.getElementById("calculateBtn");

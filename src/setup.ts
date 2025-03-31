@@ -1,3 +1,6 @@
+// written by high-haseeb (haseebkhalidoriginal@gmail.com)
+// this file is part of the project `Peptide-Calculator`
+
 const DefaultDoseValues = [0.1, 0.25, 0.5, 1, 2.5, 5, 7.5, 10, 12.5, 15]; // in mg
 const DefaultStrengthValues = [1, 5, 10, 15, 20, 30, 50];                 // in mg
 const DefaultWaterAmounts = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];               // in mL
@@ -39,7 +42,7 @@ function handleClick(button: HTMLButtonElement, containerId: string, callback: (
     CalculateResult();
 }
 
-function setupInput(container: HTMLDivElement, values: number[], callback: (value: number) => void, defaultValue: number) {
+function setupInput(container: HTMLElement, values: number[], callback: (value: number) => void, defaultValue: number) {
     values.map((value) => {
         const element = document.createElement("button");
         element.classList.add(`${container.id}-input-buttons`);
@@ -50,13 +53,11 @@ function setupInput(container: HTMLDivElement, values: number[], callback: (valu
         container.appendChild(element);
     });
 
-    // Add Custom Button
     const customButton = document.createElement("button");
     customButton.classList.add(`${container.id}-input-buttons`);
     customButton.innerText = "Custom";
     container.appendChild(customButton);
 
-    // Add Custom Input
     const customInput = document.createElement("input");
     customInput.type = "number";
     customInput.placeholder = `Enter ${container.id} value`;
@@ -80,15 +81,15 @@ function setupInput(container: HTMLDivElement, values: number[], callback: (valu
     });
 }
 
-export function DoseInputSetup(container: HTMLDivElement) {
+export function DoseInputSetup(container: HTMLElement) {
     setupInput(container, DefaultDoseValues, (value) => doseValue = value, doseValue);
 }
 
-export function StrengthInputSetup(container: HTMLDivElement) {
+export function StrengthInputSetup(container: HTMLElement) {
     setupInput(container, DefaultStrengthValues, (value) => peptideStrength = value, peptideStrength);
 }
 
-export function WaterInputSetup(container: HTMLDivElement) {
+export function WaterInputSetup(container: HTMLElement) {
     setupInput(container, DefaultWaterAmounts, (value) => waterAmount = value, waterAmount);
 }
 
@@ -118,13 +119,15 @@ export function CalculateResult() {
         plungerEl.style.width = `${plungerWidth}px`;
     }
 
-    // @ts-ignore
-    document.getElementById("concentration").textContent = `${concentration.toFixed(2)} mg/mL`;
+    const concentrationContainerEl = document.getElementById("concentration");
+    const volumeContainerEl = document.getElementById("volumeToDraw");
+    const volumeInIUContainerEl = document.getElementById("volumeInIU");
 
-    // @ts-ignore
-    document.getElementById("volumeToDraw").textContent = `${volumeToDraw.toFixed(2)} units`;
+    if (!concentrationContainerEl || !volumeContainerEl || !volumeInIUContainerEl) {
+        throw new Error("Can not find element for the displaying the results");
+    }
 
-    // @ts-ignore
-    document.getElementById("volumeInIU").textContent = `${volumeInIU.toFixed(2)} units`;
+    concentrationContainerEl.textContent = `${concentration.toFixed(2)} mg/mL`;
+    volumeContainerEl.textContent = `${volumeToDraw.toFixed(2)} units`;
+    volumeInIUContainerEl.textContent = `${volumeInIU.toFixed(2)} units`;
 }
-
