@@ -109,7 +109,6 @@ export function CalculateResult() {
     // only 80% of the image is the plunger insides
     let totalWidth = injectionImage.clientWidth - (injectionImage.clientWidth * 0.25);
     if (window.innerWidth < 786) {
-        // on mobile devices the injection image width is 80% the screen size minus the paddings
         totalWidth = injectionImage.clientWidth - (injectionImage.clientWidth * 0.25); 
     }
 

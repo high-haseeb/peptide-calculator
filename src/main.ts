@@ -13,6 +13,6 @@ DoseInputSetup(doseAmountContainer);
 StrengthInputSetup(peptideStrengthContainer);
 WaterInputSetup(waterAmountContainer);
 
-const calculateEl = document.getElementById("calculateBtn");
-if (!calculateEl) throw new Error("Can not find button with id `calculateBtn`");
-calculateEl.addEventListener("click", CalculateResult);
+// const calculateEl = document.getElementById("calculateBtn");
+// if (!calculateEl) throw new Error("Can not find button with id `calculateBtn`");
+// calculateEl.addEventListener("click", CalculateResult);
