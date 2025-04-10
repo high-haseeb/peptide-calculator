@@ -194,6 +194,11 @@ img {
     text-align: center;
 }
 
+p.desc {
+    text-align: left;
+}
+
+
 /* Special Elements */
 #plunger {
     position: absolute;
