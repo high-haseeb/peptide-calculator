@@ -46,7 +46,7 @@ function setupInput(container: HTMLElement, values: number[], callback: (value: 
     values.map((value) => {
         const element = document.createElement("button");
         element.classList.add(`${container.id}-input-buttons`);
-        element.innerText = `${value}${container.id === "water" ? "mL" : "mg"}`;
+        element.innerText = `${value}${container.id === "waterAmount-container" ? "mL" : "mg"}`;
         element.value = value.toString();
         if (value === defaultValue) element.classList.add("selected");
         element.addEventListener('click', () => handleClick(element, container.id, callback));
@@ -103,10 +103,14 @@ export function CalculateResult() {
     const volumeToDraw = doseValue / concentration;
     const volumeInIU = volumeToDraw * 100;
 
-    let totalWidth = 64 * 16 - (270);
+    const injectionImage = document.getElementById("injection-img");
+    if (!injectionImage) throw new Error("Can not find the injection image");
+
+    // only 80% of the image is the plunger insides
+    let totalWidth = injectionImage.clientWidth - (injectionImage.clientWidth * 0.25);
     if (window.innerWidth < 786) {
         // on mobile devices the injection image width is 80% the screen size minus the paddings
-        totalWidth = window.innerWidth * 0.7;
+        totalWidth = injectionImage.clientWidth - (injectionImage.clientWidth * 0.25); 
     }
 
     const totalMarks = 100;
@@ -122,11 +126,13 @@ export function CalculateResult() {
     const concentrationContainerEl = document.getElementById("concentration");
     const volumeContainerEl = document.getElementById("volumeToDraw");
     const volumeInIUContainerEl = document.getElementById("volumeInIU");
+    const peptideDoseContainerEl = document.getElementById("peptide-dose");
 
     if (!concentrationContainerEl || !volumeContainerEl || !volumeInIUContainerEl) {
         throw new Error("Can not find element for the displaying the results");
     }
 
+    peptideDoseContainerEl.textContent = `${doseValue} mg`
     concentrationContainerEl.textContent = `${concentration.toFixed(2)} mg/mL`;
     volumeContainerEl.textContent = `${volumeToDraw.toFixed(2)} units`;
     volumeInIUContainerEl.textContent = `${volumeInIU.toFixed(2)} units`;

@@ -172,6 +172,28 @@ img {
     object-fit: contain;
 }
 
+#error { 
+    font-size: 1.2rem;
+    margin: 2rem 0rem;
+    font-weight: bold;
+    color: red;
+    animation: ping 1.5s ease-in-out infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.desc {
+    justify-self: flex-end;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
 /* Special Elements */
 #plunger {
     position: absolute;
@@ -257,6 +279,6 @@ img {
     #plunger {
         height: 2.5rem;
         bottom: 0.5rem;
-        left: 5.0rem;
+        left: 5.5rem;
     }
 }
