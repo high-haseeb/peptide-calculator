@@ -117,6 +117,7 @@ export function CalculateResult() {
     const plungerWidth = widthPerMark * volumeInIU;
     if (plungerWidth > totalWidth) {
         setError("Please lower the amount of water!");
+        plungerEl.style.width = `0px`;
     } else {
         clearError();
         plungerEl.style.width = `${plungerWidth}px`;
