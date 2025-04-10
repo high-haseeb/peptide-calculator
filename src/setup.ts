@@ -128,7 +128,10 @@ export function CalculateResult() {
     const volumeInIUContainerEl = document.getElementById("volumeInIU");
     const peptideDoseContainerEl = document.getElementById("peptide-dose");
 
-    if (!concentrationContainerEl || !volumeContainerEl || !volumeInIUContainerEl) {
+    if (!concentrationContainerEl ||
+        !volumeContainerEl || 
+        !volumeInIUContainerEl || 
+        !peptideDoseContainerEl) {
         throw new Error("Can not find element for the displaying the results");
     }
 
