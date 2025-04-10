@@ -167,6 +167,13 @@ input:focus {
     font-size: 0.8rem;
 }
 
+.title-desc {
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
+    color: var(--muted-foreground);
+}
+
 /* Misc */
 strong {
     font-size: 1rem;
