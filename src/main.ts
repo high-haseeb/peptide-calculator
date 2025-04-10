@@ -1,5 +1,5 @@
 import './style.css';
-import { CalculateResult, DoseInputSetup, StrengthInputSetup, WaterInputSetup } from './setup';
+import { DoseInputSetup, StrengthInputSetup, WaterInputSetup } from './setup';
 
 const doseAmountContainer = document.getElementById("doseAmount-container");
 const peptideStrengthContainer = document.getElementById("peptideStrength-container");
